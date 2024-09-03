@@ -35,6 +35,7 @@ import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
+import java.util.List;
 import java.util.UUID;
 
 @Configuration
@@ -86,8 +87,8 @@ public class ProjectSecurityConfig {
                 .clientSecret("{noop}CFy2SRbnvjeW7D4cVPpmfJhAYg5GE6L9qMsxKUBw")
                 .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
                 .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
-                .scope(OidcScopes.OPENID)
-                .scope(OidcScopes.PROFILE)
+                .scopes(scopeConfig -> scopeConfig.addAll
+                        (List.of(OidcScopes.OPENID, "ADMIN", "USER")))
                 .clientSettings(ClientSettings.builder().requireAuthorizationConsent(true).build())
                 .build();
 
