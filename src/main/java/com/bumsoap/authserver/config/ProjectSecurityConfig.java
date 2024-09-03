@@ -101,7 +101,21 @@ public class ProjectSecurityConfig {
                         .accessTokenFormat(OAuth2TokenFormat.SELF_CONTAINED).build())
                 .build();
 
-        return new InMemoryRegisteredClientRepository(clientCredClient);
+        RegisteredClient authCodeClient = RegisteredClient.withId(UUID.randomUUID().toString())
+                .clientId("eazybankclient")
+                .clientSecret("{noop}hvNBeCmz6A4s9VpRdaxLUKD7JSWFknQfuZrHT5Yw")
+                .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_POST)
+                .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
+                .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
+                .redirectUri("https://oauth.pstmn.io/v1/callback")
+                .scopes(scopeConfig -> scopeConfig.addAll
+                        (List.of(OidcScopes.OPENID, "ADMIN", "USER")))
+                .tokenSettings(TokenSettings.builder()
+                        .accessTokenTimeToLive(Duration.ofMinutes(10))
+                        .accessTokenFormat(OAuth2TokenFormat.SELF_CONTAINED).build())
+                .build();
+
+        return new InMemoryRegisteredClientRepository(clientCredClient, authCodeClient);
     }
 
     @Bean
