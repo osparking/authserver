@@ -85,7 +85,7 @@ public class ProjectSecurityConfig {
 
     @Bean
     public RegisteredClientRepository registeredClientRepository() {
-        RegisteredClient oidcClient = RegisteredClient.withId(UUID.randomUUID().toString())
+        RegisteredClient clientCredClient = RegisteredClient.withId(UUID.randomUUID().toString())
                 .clientId("eazybankapi")
                 .clientSecret("{noop}CFy2SRbnvjeW7D4cVPpmfJhAYg5GE6L9qMsxKUBw")
                 .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
@@ -97,7 +97,7 @@ public class ProjectSecurityConfig {
                         .accessTokenFormat(OAuth2TokenFormat.SELF_CONTAINED).build())
                 .build();
 
-        return new InMemoryRegisteredClientRepository(oidcClient);
+        return new InMemoryRegisteredClientRepository(clientCredClient);
     }
 
     @Bean
