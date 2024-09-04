@@ -111,6 +111,8 @@ public class ProjectSecurityConfig {
                 .scope(OidcScopes.OPENID).scope(OidcScopes.EMAIL)
                 .tokenSettings(TokenSettings.builder()
                         .accessTokenTimeToLive(Duration.ofMinutes(10))
+                        .refreshTokenTimeToLive(Duration.ofHours(8))
+                        .reuseRefreshTokens(false)
                         .accessTokenFormat(OAuth2TokenFormat.SELF_CONTAINED).build())
                 .build();
 
