@@ -117,9 +117,8 @@ public class ProjectSecurityConfig {
                 .build();
 
         RegisteredClient pkceClient = RegisteredClient.withId(UUID.randomUUID().toString())
-                .clientId("eazybankclient")
-                .clientSecret("{noop}hvNBeCmz6A4s9VpRdaxLUKD7JSWFknQfuZrHT5Yw")
-                .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_POST)
+                .clientId("eazypublicclient")
+                .clientAuthenticationMethod(ClientAuthenticationMethod.NONE)
                 .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
                 .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
                 .redirectUri("https://oauth.pstmn.io/v1/callback")
