@@ -26,7 +26,7 @@ public class MyUserDetailsService implements UserDetailsService {
         Customer customer = customerRepository.findByEmail(username).orElseThrow(() -> new
                 UsernameNotFoundException("다음 유저 정보는 존재하지 않음: " + username));
         List<GrantedAuthority> authorities = customer.getAuthorities().stream().map(authority -> new
-                SimpleGrantedAuthority(authority.getName())).collect(Collectors.toList());
+                SimpleGrantedAuthority(authority.getRole())).collect(Collectors.toList());
         return new User(customer.getEmail(), customer.getPwd(), authorities);
     }
 }
