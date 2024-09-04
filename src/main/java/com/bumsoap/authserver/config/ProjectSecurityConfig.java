@@ -108,8 +108,7 @@ public class ProjectSecurityConfig {
                 .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
                 .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
                 .redirectUri("https://oauth.pstmn.io/v1/callback")
-                .scopes(scopeConfig -> scopeConfig.addAll
-                        (List.of(OidcScopes.OPENID, "ADMIN", "USER")))
+                .scope(OidcScopes.OPENID).scope(OidcScopes.EMAIL)
                 .tokenSettings(TokenSettings.builder()
                         .accessTokenTimeToLive(Duration.ofMinutes(10))
                         .accessTokenFormat(OAuth2TokenFormat.SELF_CONTAINED).build())
