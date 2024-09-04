@@ -35,6 +35,6 @@ public class UnamePwdAuthenProvider implements AuthenticationProvider {
 
     @Override
     public boolean supports(Class<?> authentication) {
-        return false;
+        return (UnamePwdAuthenProvider.class.isAssignableFrom(authentication));
     }
 }
