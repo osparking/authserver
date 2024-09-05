@@ -105,7 +105,7 @@ public class ProjectSecurityConfig {
                         (List.of(OidcScopes.OPENID, "ADMIN", "USER")))
                 .tokenSettings(TokenSettings.builder()
                         .accessTokenTimeToLive(Duration.ofMinutes(10))
-                        .accessTokenFormat(OAuth2TokenFormat.REFERENCE).build())
+                        .accessTokenFormat(OAuth2TokenFormat.SELF_CONTAINED).build())
                 .build();
 
         RegisteredClient introspectClient = RegisteredClient.withId(UUID.randomUUID().toString())
